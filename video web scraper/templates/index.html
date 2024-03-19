@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapper de Videos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .long-url {
+            max-width: 200px; /* ajusta este valor según tus necesidades */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        a:visited {
+            color: purple; /* Puedes ajustar el color según tus preferencias */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Scrapper de Videos</h1>
+        <form id="scrapper-form" class="mb-4">
+            <label for="site-url">URL del sitio:</label>
+            <input type="text" id="site-url" name="site-url" required>
+            <!-- por ejemplo prueba con: https://recomendacionesdemisanimes.blogspot.com/2019/02/marmelade-boy-la-familia-crece-serie.html   -->
+            <button type="submit" class="btn btn-primary">Analizar</button>
+        </form>
+
+        <h2 class="text-center">Lista de URLs de Videos:</h2>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th> <!-- Agrega una columna para la numeración -->
+                        <th>URL</th>
+                    </tr>
+                </thead>
+                <tbody id="video-list"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('scrapper-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = event.target;
+            var url = form['site-url'].value.trim();
+
+            fetch('/scrape?url=' + encodeURIComponent(url))
+            .then(response => response.json())
+            .then(data => {
+                var videoList = document.getElementById('video-list');
+                videoList.innerHTML = '';
+                data.forEach(function(videoUrl, index) { // Agrega el parámetro index al bucle forEach
+                    var listItem = document.createElement('tr');
+                    var numberItem = document.createElement('td'); // Crea una celda para la numeración
+                    numberItem.textContent = index; // Establece el texto como el índice de la fila
+                    var linkItem = document.createElement('a');
+                    linkItem.setAttribute('href', videoUrl);
+                    linkItem.setAttribute('target', '_blank');
+                    linkItem.textContent = videoUrl;
+                    var tdItem = document.createElement('td');
+                    tdItem.appendChild(linkItem);
+                    tdItem.classList.add('long-url'); // Aplica la clase para truncar la URL larga
+                    listItem.appendChild(numberItem); // Agrega la celda de numeración
+                    listItem.appendChild(tdItem);
+                    videoList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
