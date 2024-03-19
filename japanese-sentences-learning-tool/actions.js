@@ -1,5 +1,5 @@
 let url =
-  "https://raw.githubusercontent.com/Keruanima/keruanima-small-projects/main/japanese-sentences-learning-tool/jap-sentences.json?token=GHSAT0AAAAAACPQ26FBD5MRFGMSOT2OFKC4ZPZP72Q";
+  "https://raw.githubusercontent.com/Keruanima/keruanima-small-projects/main/japanese-sentences-learning-tool/jap-sentences.json";
 let itemsPerPage = 10;
 let currentPage = 1;
 let data;
