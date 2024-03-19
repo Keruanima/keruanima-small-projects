@@ -1,10 +1,18 @@
 body {
     background-color: cornflowerblue;
+    
   }
   
-  .container {
-    margin-top: 20px;
-  }
+
+
+/* Estilo para el contenedor principal */
+.container {
+  max-width: 800px; /* Ancho máximo del contenido */
+  width: 100%; /* Ancho del contenido al 100% */
+  padding: 20px; /* Espacio interno */
+  box-sizing: border-box; /* Incluir el padding en el tamaño */
+}
+
   .table-header {
     display: flex;
     justify-content: space-between;
@@ -68,3 +76,48 @@ body {
   
   /* ... (Tu estilo actual) ... */
   
+
+
+/* Estilo para el input de traducción */
+
+/* Centrar la página horizontal y verticalmente */
+.space-repetition-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ajustar la altura al 100% del viewport */
+  flex-direction: column;
+}
+
+#translation-input {
+  width: 100%; /* Ancho del input al 100% */
+  min-width: 300px; /* Ancho mínimo bastante grande */
+  margin-top: 10px; /* Espacio superior */
+  padding: 10px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 4px; /* Borde redondeado */
+  box-sizing: border-box; /* Incluir borde en el tamaño */
+}
+
+#submit-button{
+  width: 100%;
+}
+
+/* Estilo para los botones de retroalimentación */
+#feedback-buttons {
+  margin-top: 10px; /* Espacio superior */
+  display: flex; /* Mostrar en línea */
+  justify-content: space-between; /* Espaciado entre los botones */
+}
+
+#feedback-buttons .btn {
+  width: 40%;
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+  /* Ajustar estilos para pantallas pequeñas */
+  #translation-input {
+    min-width: 200px; /* Reducir el ancho mínimo en pantallas pequeñas */
+  }
+}
