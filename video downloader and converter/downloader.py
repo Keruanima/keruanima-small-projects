@@ -2,6 +2,8 @@ import pytube
 from pytube import YouTube
 from tkinter import *
 
+#playlist_url = "https://www.youtube.com/playlist?list=PLfZURa0GCfYQBNJgqhcAmnkTzIbixP5FS"
+
 def descargar_video(url):
     try:
         if "playlist" in url:
