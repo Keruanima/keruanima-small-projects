@@ -33,18 +33,20 @@ function showNextSentence() {
   const spanishTranslation = data[currentIndex].esp;
   
   // Mostrar la frase en la interfaz
-  $("#japanese-sentence").text(japaneseSentence);
+  const $japaneseSentence = $("#japanese-sentence");
+  $japaneseSentence.text(japaneseSentence);
   $("#correct-translation").text("");
   $("#feedback-buttons").hide();
   
   // Diferenciar visualmente las frases que ya han sido mostradas
   if (data[currentIndex].shown) {
-    $("#japanese-sentence").css("color", "gray");
+    $japaneseSentence.addClass("shown"); // Aplicar clase CSS
   } else {
-    $("#japanese-sentence").css("color", "black");
+    $japaneseSentence.removeClass("shown"); // Quitar clase CSS
     data[currentIndex].shown = true; // Marcar la frase como mostrada
   }
 }
+
 
 // Función para manejar el evento de clic en el botón "Submit"
 function handleSubmit() {
@@ -54,9 +56,6 @@ function handleSubmit() {
   // Mostrar la traducción correcta
   $("#correct-translation").text(correctTranslation);
   $("#feedback-buttons").show();
-  
-  // Marcar la frase como mostrada
-  data[currentIndex].shown = true;
 }
 
 // Función para manejar el evento de clic en el botón "Bien"
@@ -74,32 +73,30 @@ function handleBadButtonClick() {
 // Función para actualizar la cola de repeticiones según la respuesta del usuario
 function updateReviewQueue(correct) {
   if (correct) {
-    repetitionsUntilNextAppearance[currentIndex] += 10;
+    if (repetitionsUntilNextAppearance[currentIndex] !== undefined) {
+        // Reposicionar la frase en la cola de repeticiones después de 10 frases
+        newPosition = (currentIndex + repetitionsUntilNextAppearance[currentIndex]) % data.length;   
+        // Mostrar la posición en consola
+        console.log(`Posición de la frase calificada como "bien": ${newPosition}`);
+        // Actualizar el número de repeticiones hasta la próxima aparición
+        repetitionsUntilNextAppearance[currentIndex] *= 2;
+      } else {
+        // Reposicionar la frase en la cola de repeticiones después de 10 frases
+        newPosition = (currentIndex + 10) % data.length;        
+        // Mostrar la posición en consola
+        console.log(`Posición de la frase calificada como "bien": ${newPosition}`);
+        // Actualizar el número de repeticiones hasta la próxima aparición
+        repetitionsUntilNextAppearance[currentIndex] = 10;
+      }
+    reviewQueue.splice(newPosition, 0, currentIndex);
   } else {
     // Reposicionar la frase en la cola de repeticiones después de 10 frases
-    const newPosition = (reviewQueue.indexOf(currentIndex) + 10) % reviewQueue.length;
+    const newPosition = (currentIndex + 10) % data.length;
     reviewQueue.splice(newPosition, 0, currentIndex);
     // Actualizar el número de repeticiones hasta la próxima aparición
     repetitionsUntilNextAppearance[currentIndex] = 10;
   }
 }
-
-// Event listener para las teclas presionadas
-$(document).keydown(function(event) {
-  // Si la tecla presionada es '1', simular clic en el botón "Bien"
-  if (event.key === '1') {
-    $("#good-button").trigger("click");
-  }
-  // Si la tecla presionada es '2', simular clic en el botón "Mal"
-  else if (event.key === '2') {
-    $("#bad-button").trigger("click");
-  }
-  // Si la tecla presionada es la barra espaciadora, enviar el formulario
-  else if (event.key === ' ') {
-    event.preventDefault(); // Evitar el comportamiento predeterminado de la barra espaciadora (desplazamiento de la página)
-    $("#translation-form").submit();
-  }
-});
 
 // Event listeners para los botones y el formulario
 $(document).ready(function() {

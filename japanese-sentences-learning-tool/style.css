@@ -114,6 +114,10 @@ body {
   width: 40%;
 }
 
+.shown {
+  color: #ffc107; /* Cambiar a tu color deseado */
+}
+
 /* Estilos para dispositivos móviles */
 @media only screen and (max-width: 600px) {
   /* Ajustar estilos para pantallas pequeñas */
