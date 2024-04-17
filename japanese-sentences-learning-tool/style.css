@@ -1,16 +1,19 @@
-body {
-    background-color: cornflowerblue;
-    
-  }
-  
-
-
+#navbarSupportedContent{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 /* Estilo para el contenedor principal */
 .container {
   max-width: 800px; /* Ancho máximo del contenido */
   width: 100%; /* Ancho del contenido al 100% */
   padding: 20px; /* Espacio interno */
   box-sizing: border-box; /* Incluir el padding en el tamaño */
+}
+
+a.nav-link.active{
+  font-weight: bold;
+  background-color: #85858520;
 }
 
   .table-header {
@@ -26,6 +29,8 @@ body {
   
   .mobile-th {
     display: none;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .search-container {
@@ -43,8 +48,7 @@ body {
   }
   
   table thead {
-    background: #302b63;
-    color: white;
+    background: #8984bf;
   }
   
   .btn-disabled {
@@ -64,8 +68,6 @@ body {
     }
     .mobile-th {
       display: block;
-      background: #302b63 !important;
-      color: #fff;
     }
     tr {
       display: grid;

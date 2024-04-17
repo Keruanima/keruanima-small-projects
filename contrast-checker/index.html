@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check de contraste de color para la accesibilidad</title>
+  <!-- Enlaces a tus archivos CSS y JS -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Generador de Paletas de Colores Accesibles</h1>
+    <fieldset>
+      <label>
+          <input class="toggle-button" data-toggle-theme name="terms" type="checkbox" role="switch" /><span id="theme-icon">☀️</span>
+      </label>
+    </fieldset>
+    <!-- Selector de Colores -->
+    <div class="color-selector">
+      <label for="primary-color">Color Primario:</label>
+      <input type="color" id="primary-color">
+      <label for="secondary-color">Color Secundario:</label>
+      <input type="color" id="secondary-color">
+    </div>
+
+    <!-- Visualización de la Paleta de Colores -->
+    <div class="palette">
+      <h2>Paleta de Colores</h2>
+      <div id="color-1" class="color-box"></div>
+      <div id="color-2" class="color-box"></div>
+      <!-- Agrega más cajas de color según sea necesario -->
+    </div>
+
+    <!-- Botón para generar la paleta de colores -->
+    <button id="check-button">comprobar contraste</button>
+    <a href="../index.html"><button class="secondary">Regresar al indice de proyectos</button></a>
+    
+
+    <p id="contrast-text"></p>
+  </div>
+
+  <!-- Contenido de la página -->
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <title>Uso de Fetch</title>
 
   <style>
@@ -17,13 +16,17 @@
 </head>
 
 <body>
-  <header class="shadow-lg">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <header class="">
+    <nav class="navbar">
       <div class="container" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Indice de proyectos</a></li>
           <li class="nav-item active"><a class="nav-link active" href="index.html">listado de frases </a></li>
-          <li class="nav-item active"><a class="nav-link" href="space-repetition.html">practica</a></li>
+          <li class="nav-item"><a class="nav-link" href="space-repetition.html">practica</a></li>
         </ul>
+          <label>
+              <input class="toggle-button" data-toggle-theme name="terms" type="checkbox" role="switch" /><span id="theme-icon">☀️</span>
+          </label>
     </nav>
   </header>
   </div>
@@ -53,9 +56,7 @@
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
     crossorigin="anonymous"></script>
 
-  <script>
-
-  </script>
+  <script src="../script.js"></script>
   <script src="actions.js"></script>
 </body>
 
